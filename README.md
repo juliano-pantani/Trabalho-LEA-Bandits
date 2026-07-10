@@ -8,7 +8,7 @@ Trabalho acadêmico de **Pedro Ricardo Binhardi** e **Juliano Parasmo Pantani**,
 |---|---|
 | `codigos_projetobandit.R` | Script principal com toda a simulação (Partes 1 e 2) |
 | `RelatórioBandits_PRB.Rmd` | Relatório em R Markdown com a análise completa |
-| `RelatórioBandits_PRB.html` | Versão renderizada (HTML) do relatório |
+| `RelatórioBandits_PRB.pdf` | Versão renderizada (PDF) do relatório |
 
 ## 🧪 O que o projeto investiga
 
