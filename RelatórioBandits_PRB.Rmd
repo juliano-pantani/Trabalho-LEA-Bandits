@@ -249,7 +249,7 @@ Não, a política greedy não se mostra competitiva a longo prazo, apresentando 
 
 4.  A política que maximiza recompensa acumulada também estima bem todos os $\lambda_{a}$?
 
-    Não. Há um trade-off e uma distinção fundamental entre o objetivo científico de estimar com precisão o efeito de todos os tratamentos e o objetivo prático de maximizar a recompensa cumulativa durante o processo. Para maximizar o número total de cadastros, algoritmos eficientes como UCB e Thompson Sampling direcionam rapidamente o tráfego de usuários para as versões de melhor desempenho aparente. Consequentemente, as campanhas com pior desempenho (como as de menor taxa $\lambda_{a}$) deixam de ser selecionadas e acumulam pouquíssimas observações, fazendo com que a incerteza e a variância de suas estimativas permaneçam elevadas.
+Não. Há um trade-off e uma distinção fundamental entre o objetivo científico de estimar com precisão o efeito de todos os tratamentos e o objetivo prático de maximizar a recompensa cumulativa durante o processo. Para maximizar o número total de cadastros, algoritmos eficientes como UCB e Thompson Sampling direcionam rapidamente o tráfego de usuários para as versões de melhor desempenho aparente. Consequentemente, as campanhas com pior desempenho (como as de menor taxa $\lambda_{a}$) deixam de ser selecionadas e acumulam pouquíssimas observações, fazendo com que a incerteza e a variância de suas estimativas permaneçam elevadas.
 
 5.  O modelo Poisson é adequado para o exemplo? Quais limitações ele tem?
 
@@ -268,3 +268,10 @@ Para aproximar o experimento de uma aplicação real de mercado, seriam sugerida
 **Adoção de Distribuições Flexíveis:** Substituir a verossimilhança Poisson por uma distribuição Binomial Negativa, o que adiciona um parâmetro de forma capaz de acomodar e modelar a sobredispersão inerente ao comportamento digital dos usuários.
 
 **Dinâmica Não-Estacionária:** Permitir que os parâmetros das taxas de conversão alterem-se com o passar do tempo, refletindo o desgaste natural das peças publicitárias (saturação) ou variações sazonais de mercado.
+
+
+# Repositório do Projeto
+
+Todo o código-fonte desenvolvido para este trabalho está disponível no repositório oficial:
+
+**Link:** https://github.com/juliano-pantani/Trabalho-LEA-Bandits/tree/main
