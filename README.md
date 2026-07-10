@@ -1,24 +1,57 @@
-# Análise de Algoritmos de Multi-Armed Bandits (MAB)
+# 🎰 Análise de Algoritmos de Multi-Armed Bandits (MAB)
 
-Este repositório contém a implementação e a análise estatística de experimentos baseados em problemas de *Multi-Armed Bandits* (MAB), abrangendo tanto a inferência estatística sob viés de seleção quanto a otimização de recompensas em cenários adaptativos.
+Trabalho acadêmico de **Pedro Ricardo Binhardi** e **Juliano Parasmo Pantani**, desenvolvido para a disciplina de LEA, sobre o problema de *Multi-Armed Bandits*. O repositório reúne simulações em R que investigam duas questões centrais no uso de políticas adaptativas: o viés estatístico introduzido na inferência pós-seleção e o desempenho dessas políticas na maximização de recompensas.
 
-## Estrutura do Projeto
+## 📁 Estrutura do Repositório
 
-O trabalho está estruturado em duas vertentes principais:
+| Arquivo | Descrição |
+|---|---|
+| `codigos_projetobandit.R` | Script principal com toda a simulação (Partes 1 e 2) |
+| `RelatórioBandits_PRB.Rmd` | Relatório em R Markdown com a análise completa |
+| `RelatórioBandits_PRB.html` | Versão renderizada (HTML) do relatório |
 
-1.  **Parte 1: Viés de Seleção e Intervalos de Confiança**
-    *   **Objetivo:** Avaliar a cobertura empírica de intervalos de confiança (IC) nominais de 95% para o braço selecionado como o melhor ($\hat{a} = \arg\max \hat{\mu}_a$).
-    *   **Metodologia:** Simulação de Monte Carlo com $T=500$ passos, comparando políticas de seleção (Uniforme, *Greedy*, UCB e *Thompson Sampling*) sob a hipótese nula ($\mu_1 = \dots = \mu_5 = 0$).
-    *   **Conclusão:** Evidencia-se a subestimação da incerteza e a violação da cobertura nominal devido ao viés de seleção inerente a políticas adaptativas.
+## 🧪 O que o projeto investiga
 
-2.  **Parte 2: Otimização de Recompensas (Modelo Poisson)**
-    *   **Objetivo:** Maximizar a recompensa acumulada em um ambiente estocástico, modelado via distribuição Poisson com taxas $\lambda_a$.
-    *   **Metodologia:** Implementação de políticas de exploração-explotação e análise da eficiência acumulada ao longo de $T=1000$ períodos.
-    *   **Conclusão:** Demonstra-se a superioridade das estratégias de *Thompson Sampling* e UCB no equilíbrio entre exploração e explotação, contrastando com a rigidez da estratégia *Greedy*.
+O trabalho está dividido em duas partes, cada uma comparando quatro (ou cinco) políticas clássicas de bandit: **Uniforme (aleatória)**, ***Greedy***, **UCB** e **Thompson Sampling** (e, na Parte 2, também **ε-Greedy**).
 
-## Requisitos de Execução
+### Parte 1 — Viés de Seleção e Cobertura de Intervalos de Confiança
 
-O código foi desenvolvido na linguagem **R**. Para a replicação dos resultados, é necessária a instalação dos seguintes pacotes:
+- **Pergunta:** quando o "melhor braço" é escolhido adaptativamente ($\hat{a} = \arg\max \hat{\mu}_a$), o IC de 95% construído para ele ainda tem cobertura de 95%?
+- **Setup:** 5 braços gaussianos com médias verdadeiras iguais a zero ($\mu_1=\dots=\mu_5=0$), simulação de Monte Carlo com $T=500$ passos e 1000 réplicas por política.
+- **Resultado:** políticas adaptativas (Greedy, UCB, TS) subestimam a incerteza real e **violam a cobertura nominal**, evidenciando o efeito do viés de seleção — o braço "vencedor" tende a ter sua média superestimada.
+
+### Parte 2 — Otimização de Recompensa em Ambiente Poisson
+
+- **Pergunta:** qual política acumula mais recompensa ao equilibrar exploração e explotação?
+- **Setup:** 5 braços com recompensas Poisson de taxas $\lambda_a \in \{18, 20, 21, 23, 27\}$, priori conjugada Gamma$(2, 0.1)$, $T=1000$ passos e 100 réplicas por política.
+- **Resultado:** **Thompson Sampling** e **UCB** superam claramente as estratégias mais simples (Uniforme, Greedy, ε-Greedy) em recompensa acumulada, mostrando o valor de balancear exploração e explotação de forma adaptativa.
+
+## ⚙️ Como rodar
+
+O código foi desenvolvido em **R**. Instale as dependências:
 
 ```r
 install.packages(c("tidyverse", "patchwork", "knitr"))
+```
+
+Em seguida, execute o script principal:
+
+```r
+source("codigos_projetobandit.R")
+```
+
+Ou abra e renderize o relatório completo:
+
+```r
+rmarkdown::render("RelatórioBandits_PRB.Rmd")
+```
+
+## 📊 Saídas geradas
+
+- Tabela de cobertura empírica e média estimada do braço selecionado (Parte 1)
+- Gráfico de densidade da média do braço vencedor por política (Parte 1)
+- Gráfico de recompensa acumulada média (com bandas de intervalo de 90%) ao longo do tempo, por política (Parte 2)
+
+## 📚 Referências conceituais
+
+O trabalho se apoia na literatura clássica de bandits (UCB, Thompson Sampling) e na discussão sobre inferência pós-seleção em experimentos adaptativos.
